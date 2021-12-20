@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstInterfaceActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_logo"
+        android:layout_marginBottom="100dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#008000"
+            android:text="Login"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="left"
+        android:layout_marginTop="30dp">
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="170dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="#D5CBCE" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right">
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="170dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="#D5CBCE" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="#008000"
+            android:text="Register"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+
+</LinearLayout>

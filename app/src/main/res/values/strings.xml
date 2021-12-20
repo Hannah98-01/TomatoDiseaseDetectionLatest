@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TomatoDiseaseDetectionLatest</string>
+    <string name="prefLoginState">loginstate</string>
+</resources>

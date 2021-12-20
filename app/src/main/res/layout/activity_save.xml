@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/PassImage"
+        android:layout_width="254dp"
+        android:layout_height="261dp"
+        android:layout_marginTop="60dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PassImage"
+        app:layout_constraintVertical_bias="0.501">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disease Diagnosed:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="394dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Zone:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="448dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Plant No.:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat3"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toEndOf="@+id/linearLayoutCompat"
+        app:layout_constraintTop_toBottomOf="@+id/PassImage"
+        app:layout_constraintVertical_bias="0.494">
+
+        <TextView
+            android:id="@+id/DiseaseDetected"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="Disease"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"/>
+
+        <EditText
+            android:id="@+id/zone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Zone Area"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/PlantNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Plant No."
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+        app:layout_constraintVertical_bias="0.453" />
+</androidx.constraintlayout.widget.ConstraintLayout>
