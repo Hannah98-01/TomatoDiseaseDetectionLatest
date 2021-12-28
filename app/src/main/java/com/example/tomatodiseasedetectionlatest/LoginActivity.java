@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences =getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        email = findViewById(R.id.emaillogin);
+        password = findViewById(R.id.passwordlogin);
         loginState = findViewById(R.id.loginState);
         login = findViewById(R.id.login);
         forgetPassword = findViewById(R.id.forgetPassword);
@@ -59,10 +59,10 @@ public class LoginActivity extends AppCompatActivity {
 
         String loginStatus =sharedPreferences.getString(getResources().getString(R.string.prefLoginState),"");
         if (loginStatus.equals("Logged In")){
-            startActivity(new Intent(LoginActivity.this,Detection_Activity.class));
+            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
         }
 
-        Intent intent = new Intent(LoginActivity.this,Detection_Activity.class);
+        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
         startActivity(intent);
     }
     private void login(final String email,final String password){
@@ -71,11 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(false);
         progressDialog.setTitle("Login Account");
         progressDialog.show();
-        String uRl = "http://10.0.2.2/TomatoDiseaseClassification/login.php";
+        String uRl = "https://tamatodiseasedetection.000webhostapp.com/login.php";
         StringRequest request = new StringRequest(Request.Method.POST, uRl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.equals("Login Sucess")) {
+                if (response.equals("Login Success")) {
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     else{
                         editor.putString(getResources().getString(R.string.prefLoginState),"Logged Out");
                     }
-                    startActivity(new Intent(LoginActivity.this, Detection_Activity.class));
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
                 else{
                     progressDialog.dismiss();

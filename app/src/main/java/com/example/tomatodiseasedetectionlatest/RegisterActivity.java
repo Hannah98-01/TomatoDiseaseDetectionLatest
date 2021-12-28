@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(false);
         progressDialog.setTitle("Registering New Account");
         progressDialog.show();
-        String uRl = "http://10.0.2.2/TomatoDiseaseClassification/register.php";
+        String uRl = "https://tamatodiseasedetection.000webhostapp.com/register.php";
         StringRequest request = new StringRequest(Request.Method.POST, uRl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

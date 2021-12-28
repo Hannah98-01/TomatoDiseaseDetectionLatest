@@ -1,6 +1,7 @@
 package com.example.tomatodiseasedetectionlatest;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -114,6 +115,9 @@ public class Save_Activity extends AppCompatActivity {
                 }
                 Toast.makeText(getApplicationContext(), "Pdf Created Successfully", Toast.LENGTH_SHORT).show();
                 document.close();
+
+                Intent intent = new Intent(Save_Activity.this,Detection_Activity.class);
+                startActivity(intent);
             }
 
         });

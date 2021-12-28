@@ -155,6 +155,7 @@ public class Detection_Activity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 12);
             }
         });
+
         try {
             tflite = new Interpreter(loadmodelfile(this));
         } catch (Exception e) {
@@ -270,22 +271,27 @@ public class Detection_Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == CAMERA_REQUEST_CODE){
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(image);
-        }
+                bitmap = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(bitmap);
 
-        if(requestCode==12 && resultCode==RESULT_OK && data!=null) {
+                imageStore(bitmap);
+            }
+
+        else if (requestCode==12 && resultCode==RESULT_OK && data!=null){
             imageuri = data.getData();
             try {
                 InputStream inputStream =getContentResolver().openInputStream(imageuri);
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 imageView.setImageBitmap(bitmap);
-
                 imageStore(bitmap);
-                
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                }
+            catch (IOException e) {
+                    e.printStackTrace();
             }
+        }
+        else{
+            Toast.makeText(this,"Error",Toast.LENGTH_LONG).show();
         }
     }
 
