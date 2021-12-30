@@ -52,6 +52,11 @@
             android:name=".History_Activity"
             android:exported="true"/>
 
+        <activity
+            android:name=".PdfActivity"
+            android:exported="true"/>
+
+
 
     </application>
 

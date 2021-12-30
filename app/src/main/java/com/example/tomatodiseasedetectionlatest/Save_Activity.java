@@ -116,7 +116,7 @@ public class Save_Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Pdf Created Successfully", Toast.LENGTH_SHORT).show();
                 document.close();
 
-                Intent intent = new Intent(Save_Activity.this,Detection_Activity.class);
+                Intent intent = new Intent(Save_Activity.this,HomeActivity.class);
                 startActivity(intent);
             }
 

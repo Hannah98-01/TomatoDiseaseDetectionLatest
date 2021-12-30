@@ -33,7 +33,7 @@ public class PDFAdapter extends ArrayAdapter<File> {
             return al_pdf.size();
         }
         else {
-            return super.getViewTypeCount();
+            return 1;
         }
     }
 
