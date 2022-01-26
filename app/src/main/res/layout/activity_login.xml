@@ -76,23 +76,24 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <CheckBox
                     android:id="@+id/loginState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Keep Me Logged In"
-                    android:textColor="@color/teal_700"
                     android:buttonTint="@color/teal_700"
                     android:gravity="center"
-                    android:textSize="10dp"/>
+                    android:text="Keep Me Logged In"
+                    android:textColor="@color/teal_700"
+                    android:textSize="10dp" />
 
-                <Button
-                    android:id="@+id/forgetPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Forget Password"
-                    android:textSize="10dp"
-                    android:layout_marginTop="10dp"/>
+<!--                <Button-->
+<!--                    android:id="@+id/forgetPassword"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Forget Password"-->
+<!--                    android:textSize="10dp"-->
+<!--                    android:layout_marginTop="10dp"/>-->
 
             </LinearLayout>
 

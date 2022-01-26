@@ -56,6 +56,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Detection_Activity extends AppCompatActivity {
+    private int mInputSize = 224;
+    private String mModelPath = "model_unquant.tflite";
+    private String mLabelPath = "labels.txt";
+    private Classifier classifier;
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -157,8 +161,10 @@ public class Detection_Activity extends AppCompatActivity {
         });
 
         try {
-            tflite = new Interpreter(loadmodelfile(this));
-        } catch (Exception e) {
+            initClassifier();
+            initViews();
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
 
@@ -171,74 +177,17 @@ public class Detection_Activity extends AppCompatActivity {
                 busave.setVisibility(View.VISIBLE);
                 bucancel.setVisibility(View.VISIBLE);
 
-                int imageTensorIndex = 0;
-                int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
-                imageSizeY = imageShape[1];
-                imageSizeX = imageShape[2];
-                DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
-
-                int probabilityTensorIndex = 0;
-                int[] probabilityShape =
-                        tflite.getOutputTensor(probabilityTensorIndex).shape(); // {1, NUM_CLASSES}
-                DataType probabilityDataType = tflite.getOutputTensor(probabilityTensorIndex).dataType();
-
-                inputImageBuffer = new TensorImage(imageDataType);
-                outputProbabilityBuffer = TensorBuffer.createFixedSize(probabilityShape, probabilityDataType);
-                probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
-
-                inputImageBuffer = loadImage(bitmap);
-
-                tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
-                showresult();
+                List<Classifier.Recognition> result = classifier.recognizeImage(bitmap);
+                classitext.setText(result.get(0).toString());
             }
         });
     }
-    private TensorImage loadImage(final Bitmap bitmap) {
-        inputImageBuffer.load(bitmap);
-
-        int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
-        ImageProcessor imageProcessor =
-                new ImageProcessor.Builder()
-                        .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
-                        .add(new ResizeOp(imageSizeX, imageSizeY, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
-                        .add(getPreprocessNormalizeOp())
-                        .build();
-        return imageProcessor.process(inputImageBuffer);
+    private void initClassifier() throws IOException{
+        classifier = new Classifier(getAssets(),mModelPath,mLabelPath,mInputSize);
     }
 
-    private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model_unquant.tflite");
-        FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
-        FileChannel fileChannel=inputStream.getChannel();
-        long startoffset = fileDescriptor.getStartOffset();
-        long declaredLength=fileDescriptor.getDeclaredLength();
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY,startoffset,declaredLength);
-    }
-
-    private TensorOperator getPreprocessNormalizeOp() {
-        return new NormalizeOp(IMAGE_MEAN, IMAGE_STD);
-    }
-    private TensorOperator getPostprocessNormalizeOp(){
-        return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
-    }
-
-    private void showresult(){
-
-        try{
-            labels = FileUtil.loadLabels(this,"labels.txt");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        Map<String, Float> labeledProbability =
-                new TensorLabel(labels, probabilityProcessor.process(outputProbabilityBuffer))
-                        .getMapWithFloatValue();
-        float maxValueInMap =(Collections.max(labeledProbability.values()));
-
-        for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
-            if (entry.getValue()==maxValueInMap) {
-                classitext.setText(entry.getKey());
-            }
-        }
+    private void initViews(){
+        findViewById(R.id.image);
     }
 
     private void askCameraPermissions() {
@@ -271,11 +220,11 @@ public class Detection_Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == CAMERA_REQUEST_CODE){
-                bitmap = (Bitmap) data.getExtras().get("data");
-                imageView.setImageBitmap(bitmap);
+            bitmap = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(bitmap);
 
-                imageStore(bitmap);
-            }
+            imageStore(bitmap);
+        }
 
         else if (requestCode==12 && resultCode==RESULT_OK && data!=null){
             imageuri = data.getData();
@@ -285,9 +234,9 @@ public class Detection_Activity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
                 imageStore(bitmap);
 
-                }
+            }
             catch (IOException e) {
-                    e.printStackTrace();
+                e.printStackTrace();
             }
         }
         else{

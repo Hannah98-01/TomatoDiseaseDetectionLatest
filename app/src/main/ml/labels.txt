@@ -1,10 +1,10 @@
 Bacterial_spot
 Early_blight
-Healthy
+Septoria_leaf_spot
 Late_blight
 Leaf_Mold
-Septoria_leaf_spot
+healthy
 Spider_mites Two-spotted_spider_mite
 Target_Spot
 Tomato_mosaic_virus
-Tomato_Yellow_Leaf_Curl_Virus
+Yellow_Leaf_Curl_Virus

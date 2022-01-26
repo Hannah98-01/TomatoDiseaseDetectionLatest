@@ -49,11 +49,14 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
 //    implementation 'com.android.support:design:28.0.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation('commons-validator:commons-validator:1.4.1') {
+        exclude module: 'commons-collections'
+    }
 
     //Ml
-    implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly') { changing = true }
-    implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly') { changing = true }
-    implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly') { changing = true }
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
 
     //PDF
 //    implementation 'com.itextpdf:itext7-core:7.2.0'
@@ -61,6 +64,7 @@ dependencies {
 
     //History
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
 
 
 

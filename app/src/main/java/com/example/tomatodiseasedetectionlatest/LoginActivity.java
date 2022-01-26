@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.passwordlogin);
         loginState = findViewById(R.id.loginState);
         login = findViewById(R.id.login);
-        forgetPassword = findViewById(R.id.forgetPassword);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this,HomeActivity.class));
         }
 
-        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-        startActivity(intent);
     }
     private void login(final String email,final String password){
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
